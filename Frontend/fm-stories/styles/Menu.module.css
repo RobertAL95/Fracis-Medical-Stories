@@ -1,0 +1,11 @@
+.dashboard{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.dashboard h1{
+    color: rgb(255, 70, 70);
+}

@@ -1,0 +1,14 @@
+/* Estilos para los botones */
+.buttonlink {
+    padding: 10px;
+    border: 1px solid #cdcdcd;
+    border-radius: 10px;
+    background: aliceblue;
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Animación al pasar el ratón */
+}
+
+/* Estilos para el hover (opcional) */
+.buttonlink:hover {
+  background-color: #0056b3; /* Cambia el color de fondo al pasar el ratón */
+}

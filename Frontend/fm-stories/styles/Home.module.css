@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+}
+.main h1{
+  color: rgb(251, 57, 57);
+}
+.main h1 span{
+  color: blueviolet;
+  font-style: oblique;
+}
+
+.main p{
+  color: rgba(0, 0, 0, 0.297);
+}
+
+
