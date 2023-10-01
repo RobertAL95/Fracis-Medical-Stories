@@ -1,8 +1,22 @@
 import React from 'react';
 import { isMobile, isTablet, isDesktop } from 'react-device-detect';
 import { useRouter } from 'next/router'; // Importa el useRouter
+import styles from '../styles/Login.module.css';
 
-import styles from '../styles/Login.module.css'
+const users = [
+  {
+    user: 'Francis',
+    contraseña: '313101',
+  },
+  {
+    user: 'Yulvis',
+    contraseña: 'carne',
+  },
+  {
+    user: 'Robert',
+    contraseña: '050695',
+  },
+];
 
 const LoginPage = () => {
   const [username, setUsername] = React.useState('');
@@ -11,22 +25,29 @@ const LoginPage = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para verificar las credenciales del usuario
 
-    // Luego, puedes mostrar el dispositivo desde el que se está conectando
-    let deviceType = 'Dispositivo desconocido';
-    if (isMobile) {
-      deviceType = 'Móvil';
-    } else if (isTablet) {
-      deviceType = 'Tableta';
-    } else if (isDesktop) {
-      deviceType = 'Escritorio';
+    // Verifica las credenciales del usuario
+    const foundUser = users.find((userObj) => userObj.user === username && userObj.contraseña === password);
+
+    if (foundUser) {
+      // Luego, puedes mostrar el dispositivo desde el que se está conectando
+      let deviceType = 'Dispositivo desconocido';
+      if (isMobile) {
+        deviceType = 'Móvil';
+      } else if (isTablet) {
+        deviceType = 'Tableta';
+      } else if (isDesktop) {
+        deviceType = 'Escritorio';
+      }
+
+      alert(`Inicio de sesión exitoso desde un ${deviceType}`);
+
+      // Redirige al usuario a la página "/Menu" después de iniciar sesión
+      router.push('/Menu');
+    } else {
+      // Credenciales incorrectas, muestra un alert
+      alert('Credenciales incorrectas. No estás autorizado para entrar.');
     }
-
-    alert(`Inicio de sesión exitoso desde un ${deviceType}`);
-
-    // Redirige al usuario a la página "/Menu" después de iniciar sesión
-    router.push('/Menu');
   };
 
   return (
