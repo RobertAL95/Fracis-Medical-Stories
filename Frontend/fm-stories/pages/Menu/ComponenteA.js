@@ -1,47 +1,40 @@
-// pages/Menu/ComponenteA.js
-import React from 'react';
-import styles from '../../styles/Tension.module.css'
+import React, { useEffect, useState } from 'react';
+import styles from '../../styles/Tension.module.css';
 
 const ComponenteA = () => {
+  const [presionArterial, setPresionArterial] = useState(null);
+
+  const obtenerPresionArterialAlmacenada = () => {
+    const presionArterialStr = localStorage.getItem('presionArterial');
+    if (presionArterialStr) {
+      const presionArterial = JSON.parse(presionArterialStr);
+      setPresionArterial(presionArterial);
+    } else {
+      console.log('No se encontró presión arterial almacenada en localStorage.');
+    }
+  };
+
+  useEffect(() => {
+    obtenerPresionArterialAlmacenada();
+  }, []);
+
   return (
     <div className={styles.main}>
-      <h2>Control de tension</h2>
+      <h2>Control de tensión</h2>
       <div className={styles.ct}>
-        <h7> Sistolica</h7>
-        <h7> Diastolica</h7>
+        <h7> Sistólica</h7>
+        <h7> Diastólica</h7>
       </div>
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div>
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-      <div> <span>160 / 112</span> || 12:29 pm || 01/10/2023</div> 
-
+      {presionArterial ? (
+        <div>
+          <div>
+            <span>{presionArterial.sistolica} / {presionArterial.diastolica}</span> || {presionArterial.hora} || {presionArterial.fecha}
+          </div>
+          {/* Puedes mostrar la información en un bucle si hay múltiples entradas en localStorage */}
+        </div>
+      ) : (
+        <p>No se encontró presión arterial almacenada en localStorage.</p>
+      )}
     </div>
   );
 };
